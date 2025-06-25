@@ -1,8 +1,7 @@
 #!/bin/bash
 sudo apt update && sudo apt install default-jdk -y
 echo "export JAVA_HOME=$(dirname $(dirname $(update-alternatives --list javac)))" >> /home/luser/.bashrc
-pip install gdown
-gdown https://drive.google.com/uc?id=1G_sft8DS-Vb5xkeF6dnHFXzrIeNMC6hv -O spark-3.5.3-bin-hadoop3.tgz
+wget https://bitbucket.org/juliom6/files/raw/c2b7bbb46c8115f39088fa862794d534cebc0546/spark-3.5.3-bin-hadoop3.tgz
 tar xvf spark-3.5.3-bin-hadoop3.tgz
 sudo mv spark-3.5.3-bin-hadoop3 /opt/spark
 echo "export SPARK_HOME=/opt/spark" >> /home/luser/.bashrc
