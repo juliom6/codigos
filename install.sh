@@ -1,7 +1,8 @@
 #!/bin/bash
 sudo apt update && sudo apt install default-jdk -y
 echo "export JAVA_HOME=$(dirname $(dirname $(update-alternatives --list javac)))" >> /home/luser/.bashrc
-wget https://bitbucket.org/juliom6/files/raw/c2b7bbb46c8115f39088fa862794d534cebc0546/spark-3.5.3-bin-hadoop3.tgz
+sudo apt install megatools
+megadl "https://mega.nz/file/2NMGQDpA#48e4OMILDTPjwLqzleTVLFo_6xu-MQmfppRi4-rZlZs" --path=spark-3.5.3-bin-hadoop3.tgz
 tar xvf spark-3.5.3-bin-hadoop3.tgz
 sudo mv spark-3.5.3-bin-hadoop3 /opt/spark
 echo "export SPARK_HOME=/opt/spark" >> /home/luser/.bashrc
