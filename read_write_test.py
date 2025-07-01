@@ -2,7 +2,7 @@ from pyspark.sql import functions as F
 from datetime import datetime
 
 NUM_COLUMNS = 10 # 510 limit
-NUM_ROWS = (10**6) * 3
+NUM_ROWS = (10**6)
 ###
 df = spark.range(1, NUM_ROWS + 1)
 new_columns = ["col" + ("000" + str(l))[-3:] for l in range(NUM_COLUMNS)]
