@@ -1,8 +1,8 @@
 from pyspark.sql import functions as F
 from datetime import datetime
 
-NUM_COLUMNS = 10 # 510 limit
-NUM_ROWS = (10**5)
+NUM_COLUMNS = 100 # 510 limit
+NUM_ROWS = (10**5) * 2
 
 ###
 # SECRET_ACCESS_KEY = ""
@@ -15,8 +15,10 @@ NUM_ROWS = (10**5)
 
 df = spark.range(1, NUM_ROWS + 1)
 new_columns = ["col" + ("000" + str(l))[-3:] for l in range(NUM_COLUMNS)]
+seed = 0
 for col_name in new_columns:
-    df = df.withColumn(col_name, F.rand(seed=0))
+    df = df.withColumn(col_name, F.rand(seed=seed))
+    seed += 1
 
 df.write.mode("overwrite").parquet(
     root_path + "/bronze/test2/"
