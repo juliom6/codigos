@@ -2,7 +2,7 @@ from pyspark.sql import functions as F
 from datetime import datetime
 
 NUM_COLUMNS = 10 # 510 limit
-NUM_ROWS = (10**3)
+NUM_ROWS = (10**5)
 
 ###
 df = spark.range(1, NUM_ROWS + 1)
