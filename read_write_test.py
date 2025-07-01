@@ -12,6 +12,7 @@ NUM_ROWS = (10**5)
 # )
 # root_path = "abfss://testcontainer@xyz123456789.dfs.core.windows.net"
 ###
+
 df = spark.range(1, NUM_ROWS + 1)
 new_columns = ["col" + ("000" + str(l))[-3:] for l in range(NUM_COLUMNS)]
 for col_name in new_columns:
