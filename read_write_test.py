@@ -20,20 +20,20 @@ for col_name in new_columns:
     df = df.withColumn(col_name, F.rand(seed=seed))
     seed += 1
 
-df.write.mode("overwrite").parquet(
-    root_path + "/bronze/test2/"
+df.repartition(4).write.mode("overwrite").parquet(
+    root_path + "/bronze/test1/"
 )
 print("Write ok")
 print(datetime.now())
 
 df1 = spark.read.parquet(
-    root_path + "/bronze/test2/"
+    root_path + "/bronze/test1/"
 )
 df2 = spark.read.parquet(
-    root_path + "/bronze/test2/"
+    root_path + "/bronze/test1/"
 )
 df_result = df1.join(df2, df1.id + df2.id == (NUM_ROWS + 1)).select(df1["*"])
-df_result.write.mode("overwrite").parquet(
-    root_path + "/bronze/test3/"
+df_result.repartition(4).write.mode("overwrite").parquet(
+    root_path + "/bronze/test2/"
 )
 print(datetime.now())
