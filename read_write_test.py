@@ -1,8 +1,8 @@
 from pyspark.sql import functions as F
 from datetime import datetime
 
-NUM_COLUMNS = 100 # 510 limit
-NUM_ROWS = (10**3) * 2 # (10**5) * 2 (9 min) 
+NUM_COLUMNS = 3
+NUM_ROWS = (10**5) * 2
 
 ###
 # SECRET_ACCESS_KEY = ""
@@ -20,12 +20,11 @@ for col_name in new_columns:
     df = df.withColumn(col_name, F.rand(seed=seed))
     seed += 1
 
+print(datetime.now())
 df.repartition(4).write.mode("overwrite").parquet(
     root_path + "/bronze/test1/"
 )
-print("Write ok")
 print(datetime.now())
-
 df1 = spark.read.parquet(
     root_path + "/bronze/test1/"
 )
@@ -37,4 +36,4 @@ df_result.repartition(4).write.mode("overwrite").parquet(
     root_path + "/bronze/test2/"
 )
 print(datetime.now())
-df_result.show()
+df_result.limit(10).show()
