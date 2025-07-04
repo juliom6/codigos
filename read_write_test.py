@@ -2,7 +2,7 @@ from pyspark.sql import functions as F
 from datetime import datetime
 
 NUM_COLUMNS = 100 # 510 limit
-NUM_ROWS = (10**5) * 2
+NUM_ROWS = (10**3) * 2 # (10**5) * 2 (9 min) 
 
 ###
 # SECRET_ACCESS_KEY = ""
@@ -37,3 +37,4 @@ df_result.repartition(4).write.mode("overwrite").parquet(
     root_path + "/bronze/test2/"
 )
 print(datetime.now())
+df_result.show()
