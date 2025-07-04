@@ -37,3 +37,10 @@ df_result.repartition(4).write.mode("overwrite").parquet(
 )
 print(datetime.now())
 df_result.limit(10).show()
+
+
+# dbutils.fs.rm(root_path + "/bronze/test1/", True)
+# dbutils.fs.rm(root_path + "/bronze/test2/", True)
+# print(spark.sparkContext.parallelize(range(500)).getNumPartitions())
+# print(spark.sparkContext.defaultParallelism)
+# print(spark.conf.get("spark.sql.shuffle.partitions"))
