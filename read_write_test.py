@@ -21,7 +21,7 @@ for col_name in new_columns:
     seed += 1
 
 print(datetime.now())
-df.repartition(4).write.mode("overwrite").parquet(
+df.write.mode("overwrite").parquet(
     root_path + "/bronze/test1/"
 )
 print(datetime.now())
@@ -32,7 +32,7 @@ df2 = spark.read.parquet(
     root_path + "/bronze/test1/"
 )
 df_result = df1.join(df2, df1.id + df2.id == (NUM_ROWS + 1)).select(df1["*"])
-df_result.repartition(4).write.mode("overwrite").parquet(
+df_result.write.mode("overwrite").parquet(
     root_path + "/bronze/test2/"
 )
 print(datetime.now())
