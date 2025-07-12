@@ -2,7 +2,7 @@ from pyspark.sql import functions as F
 from datetime import datetime
 
 NUM_COLUMNS = 3
-NUM_ROWS = (10**5) * 2
+NUM_ROWS = (10**3) * 2
 
 ###
 # SECRET_ACCESS_KEY = ""
