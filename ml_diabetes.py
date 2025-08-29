@@ -17,7 +17,9 @@ summary.predictions.describe().show()
 
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 predictions = model.evaluate(test)
+predictions.predictions.show(20)
 
 evaluator = BinaryClassificationEvaluator(rawPredictionCol='rawPrediction', labelCol='Outcome')
 evaluator.evaluate(model.transform(test))
+
 
